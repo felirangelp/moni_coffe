@@ -43,9 +43,18 @@ jobs:
           echo "Verifying basePath in index.html..."
           grep -q '/moni_coffe/_next' out/index.html && echo "✓ basePath correcto" || echo "✗ basePath incorrecto"
           head -1 out/index.html | grep -o 'href="/moni_coffe/[^"]*"' | head -3
+          echo ""
           echo "Verifying static files..."
           ls -la out/ | grep -E "\.html$" || echo "No HTML files found"
-          test -f out/origen-puro.html && echo "✓ origen-puro.html encontrado" || echo "✗ origen-puro.html NO encontrado"
+          echo ""
+          if [ -f out/origen-puro.html ]; then
+            echo "✓ origen-puro.html encontrado"
+            echo "Tamaño del archivo: $(wc -c < out/origen-puro.html) bytes"
+          else
+            echo "✗ origen-puro.html NO encontrado"
+            echo "Copiando desde public/..."
+            cp public/origen-puro.html out/origen-puro.html 2>/dev/null || echo "No se pudo copiar"
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
