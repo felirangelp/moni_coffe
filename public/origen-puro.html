@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Origen Puro - Café de Trazabilidad Directa</title>
+
+    <!-- Carga de Tailwind CSS para un diseño moderno y responsivo -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Configuración para usar la fuente Inter y colores de marca -->
+
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+        body {
+
+            font-family: 'Inter', sans-serif;
+
+            background-color: #f7f3ed; /* Fondo crema claro */
+
+        }
+
+        .text-coffee {
+
+            color: #4a2c2a; /* Marrón oscuro para texto principal */
+
+        }
+
+        .bg-coffee {
+
+            background-color: #6f4e37; /* Marrón café principal */
+
+        }
+
+        .bg-accent {
+
+            background-color: #b7a69b; /* Tono de acento suave */
+
+        }
+
+        .btn-primary {
+
+            @apply px-6 py-3 font-semibold text-white transition duration-300 ease-in-out transform rounded-full shadow-lg bg-coffee hover:bg-coffee/90 hover:scale-[1.02];
+
+        }
+
+        .card {
+
+             @apply bg-white p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl border border-gray-100;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+
+    <!-- Contenedor principal de la aplicación -->
+
+    <div id="app" class="min-h-screen">
+
+
+
+        <!-- Navegación y Encabezado -->
+
+        <header class="sticky top-0 z-50 bg-white shadow-md">
+
+            <div class="container mx-auto flex justify-between items-center p-4">
+
+                <h1 class="text-2xl font-bold text-coffee">Origen Puro</h1>
+
+                <nav class="hidden md:flex space-x-6 text-coffee font-medium">
+
+                    <a href="#inicio" class="hover:text-coffee/70 transition">Inicio</a>
+
+                    <a href="#origenes" class="hover:text-coffee/70 transition">Orígenes</a>
+
+                    <a href="#tienda" class="hover:text-coffee/70 transition">Tienda</a>
+
+                    <a href="#contacto" class="hover:text-coffee/70 transition">Contacto</a>
+
+                </nav>
+
+                <button id="menu-toggle" class="md:hidden text-coffee p-2 rounded-lg hover:bg-gray-100">
+
+                    <!-- Icono de menú SVG (Hamburguesa) -->
+
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+
+                </button>
+
+            </div>
+
+            <!-- Menú Móvil (inicialmente oculto) -->
+
+            <div id="mobile-menu" class="hidden md:hidden bg-white text-coffee text-center pb-4">
+
+                <a href="#inicio" class="block py-2 hover:bg-gray-100 transition">Inicio</a>
+
+                <a href="#origenes" class="block py-2 hover:bg-gray-100 transition">Orígenes</a>
+
+                <a href="#tienda" class="block py-2 hover:bg-gray-100 transition">Tienda</a>
+
+                <a href="#contacto" class="block py-2 hover:bg-gray-100 transition">Contacto</a>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- Sección Principal / Hero -->
+
+        <section id="inicio" class="bg-accent/40 py-20 md:py-32 text-center">
+
+            <div class="container mx-auto px-4">
+
+                <h2 class="text-4xl md:text-6xl font-extrabold mb-4 text-coffee leading-tight">
+
+                    Café de Origen Único. <br class="hidden sm:inline">Trazabilidad Total.
+
+                </h2>
+
+                <p class="text-xl md:text-2xl text-coffee/80 mb-8 max-w-3xl mx-auto">
+
+                    Importamos lo mejor de las fincas directamente a Netherlands. Escanea, rastrea y conoce al productor de cada grano.
+
+                </p>
+
+                <a href="#tienda" class="btn-primary">
+
+                    Comprar Café con Historia
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Sección 1: Nuestra Promesa (Características Clave) -->
+
+        <section class="py-16 md:py-24 bg-white">
+
+            <div class="container mx-auto px-4">
+
+                <h3 class="text-3xl md:text-4xl font-bold text-center mb-12 text-coffee">
+
+                    Nuestra Promesa: Del Productor a Tu Taza
+
+                </h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+
+
+                    <!-- Característica 1: Origen -->
+
+                    <div class="card text-center">
+
+                        <!-- Icono de grano de café -->
+
+                        <div class="text-5xl mb-4 text-coffee">☕</div>
+
+                        <h4 class="text-xl font-semibold mb-2 text-coffee">100% Origen Único</h4>
+
+                        <p class="text-gray-600">Solo granos de una sola finca o cooperativa. Sabores puros y sin mezclas.</p>
+
+                    </div>
+
+
+
+                    <!-- Característica 2: Trazabilidad (QR) -->
+
+                    <div class="card text-center">
+
+                        <!-- Icono de código QR -->
+
+                        <div class="text-5xl mb-4 text-coffee">📱</div>
+
+                        <h4 class="text-xl font-semibold mb-2 text-coffee">Rastreo con Código QR</h4>
+
+                        <p class="text-gray-600">Cada empaque tiene un QR que te lleva a la historia, fotos y notas de cata de la cosecha.</p>
+
+                    </div>
+
+
+
+                    <!-- Característica 3: Comercio Justo Directo -->
+
+                    <div class="card text-center">
+
+                        <!-- Icono de apretón de manos -->
+
+                        <div class="text-5xl mb-4 text-coffee">🤝</div>
+
+                        <h4 class="text-xl font-semibold mb-2 text-coffee">Comercio Directo</h4>
+
+                        <p class="text-gray-600">Pagamos precios justos y transparentes, garantizando el desarrollo sostenible del productor.</p>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Sección 2: Explora Orígenes (Simulación de Productores) -->
+
+        <section id="origenes" class="py-16 md:py-24 bg-accent/20">
+
+            <div class="container mx-auto px-4">
+
+                <h3 class="text-3xl md:text-4xl font-bold text-center mb-12 text-coffee">
+
+                    Conoce a Nuestros Productores
+
+                </h3>
+
+                <p class="text-center text-gray-700 mb-8">
+
+                    Detrás de cada taza hay una familia, una tierra y una pasión. Estas son sus historias.
+
+                </p>
+
+
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+
+
+                    <!-- Tarjeta del Productor 1: Familia Vargas - Colombia -->
+
+                    <div class="card">
+
+                        <img src="https://placehold.co/600x400/6f4e37/ffffff?text=Finca+Colombia" alt="Finca de Café en Colombia" class="rounded-lg mb-4 w-full h-48 object-cover">
+
+                        <h4 class="text-2xl font-bold text-coffee mb-2">Familia Vargas - Colombia</h4>
+
+                        <p class="text-sm font-medium text-gray-500 mb-4">Región: Huila | Variedad: Caturra</p>
+
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+
+                            Cultivan café de alta montaña con métodos tradicionales. Su compromiso con el medio ambiente produce un grano con notas de chocolate y caramelo.
+
+                        </p>
+
+                        <button onclick="mostrarHistoria('vargas')" class="text-coffee font-semibold hover:underline">
+
+                            Ver su historia completa &rarr;
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- Tarjeta del Productor 2: Cooperativa Kivu - Congo -->
+
+                    <div class="card">
+
+                        <img src="https://placehold.co/600x400/4a2c2a/ffffff?text=Cooperativa+Congo" alt="Cultivos en Congo" class="rounded-lg mb-4 w-full h-48 object-cover">
+
+                        <h4 class="text-2xl font-bold text-coffee mb-2">Cooperativa Kivu - Congo</h4>
+
+                        <p class="text-sm font-medium text-gray-500 mb-4">Región: Kivu Sur | Variedad: Bourbon</p>
+
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+
+                            Una asociación de mujeres productoras dedicadas a la calidad y la restauración de sus comunidades. Notas brillantes de frutos rojos y cítricos.
+
+                        </p>
+
+                        <button onclick="mostrarHistoria('kivu')" class="text-coffee font-semibold hover:underline">
+
+                            Ver su historia completa &rarr;
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- Tarjeta del Productor 3: Finca Llama - Perú -->
+
+                    <div class="card">
+
+                        <img src="https://placehold.co/600x400/b7a69b/4a2c2a?text=Finca+Per%C3%BA" alt="Cosecha en Perú" class="rounded-lg mb-4 w-full h-48 object-cover">
+
+                        <h4 class="text-2xl font-bold text-coffee mb-2">Finca Llama - Perú</h4>
+
+                        <p class="text-sm font-medium text-gray-500 mb-4">Región: Cajamarca | Variedad: Typica</p>
+
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+
+                            Una finca familiar en altitudes extremas, lo que resulta en un café denso y complejo. Sabor a nueces, panela y un cuerpo sedoso.
+
+                        </p>
+
+                        <button onclick="mostrarHistoria('llama')" class="text-coffee font-semibold hover:underline">
+
+                            Ver su historia completa &rarr;
+
+                        </button>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Sección 3: La Tienda (Productos) -->
+
+        <section id="tienda" class="py-16 md:py-24 bg-white">
+
+            <div class="container mx-auto px-4">
+
+                <h3 class="text-3xl md:text-4xl font-bold text-center mb-12 text-coffee">
+
+                    Nuestros Cafés Disponibles
+
+                </h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+
+
+                    <!-- Producto 1: Colombia Huila (Vargas) -->
+
+                    <div class="card text-center">
+
+                        <img src="https://placehold.co/300x300/6f4e37/ffffff?text=Paquete+Huila" alt="Bolsa de Café Colombia Huila" class="w-full h-48 object-cover rounded-lg mb-4">
+
+                        <h4 class="text-xl font-semibold text-coffee mb-1">Colombia - Granos Vargas</h4>
+
+                        <p class="text-sm text-gray-500 mb-2">Tueste Medio</p>
+
+                        <p class="text-2xl font-bold text-coffee mb-4">€ 14.95</p>
+
+                        <button onclick="agregarAlCarro('Colombia Huila')" class="btn-primary w-full text-base">
+
+                            Añadir al Carro
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- Producto 2: Congo Kivu (Cooperativa) -->
+
+                    <div class="card text-center">
+
+                        <img src="https://placehold.co/300x300/4a2c2a/ffffff?text=Paquete+Congo" alt="Bolsa de Café Congo Kivu" class="w-full h-48 object-cover rounded-lg mb-4">
+
+                        <h4 class="text-xl font-semibold text-coffee mb-1">Congo - Bourbon Kivu</h4>
+
+                        <p class="text-sm text-gray-500 mb-2">Tueste Claro</p>
+
+                        <p class="text-2xl font-bold text-coffee mb-4">€ 16.50</p>
+
+                        <button onclick="agregarAlCarro('Congo Kivu')" class="btn-primary w-full text-base">
+
+                            Añadir al Carro
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- Producto 3: Perú Cajamarca (Llama) -->
+
+                    <div class="card text-center">
+
+                        <img src="https://placehold.co/300x300/b7a69b/4a2c2a?text=Paquete+Per%C3%BA" alt="Bolsa de Café Perú Cajamarca" class="w-full h-48 object-cover rounded-lg mb-4">
+
+                        <h4 class="text-xl font-semibold text-coffee mb-1">Perú - Typica Llama</h4>
+
+                        <p class="text-sm text-gray-500 mb-2">Tueste Oscuro</p>
+
+                        <p class="text-2xl font-bold text-coffee mb-4">€ 15.90</p>
+
+                        <button onclick="agregarAlCarro('Perú Llama')" class="btn-primary w-full text-base">
+
+                            Añadir al Carro
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- Producto 4: Edición Limitada (Placeholder) -->
+
+                    <div class="card text-center opacity-75">
+
+                        <img src="https://placehold.co/300x300/a38e82/ffffff?text=Edici%C3%B3n+Limitada" alt="Bolsa de Café Edición Limitada" class="w-full h-48 object-cover rounded-lg mb-4">
+
+                        <h4 class="text-xl font-semibold text-coffee mb-1">Edición Limitada</h4>
+
+                        <p class="text-sm text-gray-500 mb-2">Próximamente</p>
+
+                        <p class="text-2xl font-bold text-coffee mb-4">--</p>
+
+                        <button disabled class="btn-primary w-full text-base bg-gray-400 cursor-not-allowed hover:scale-100">
+
+                            Pronto
+
+                        </button>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Sección 4: El Código QR - La Experiencia de Rastreo -->
+
+        <section class="py-16 md:py-24 bg-coffee text-white">
+
+            <div class="container mx-auto px-4 text-center">
+
+                <div class="max-w-4xl mx-auto">
+
+                    <h3 class="text-3xl md:text-4xl font-bold mb-6">
+
+                        El Código QR: Tu Puerta al Origen
+
+                    </h3>
+
+                    <p class="text-xl opacity-90 mb-8">
+
+                        Imagina que cada paquete de café es un pasaporte. Escaneas el código impreso y al instante:
+
+                    </p>
+
+                    <div class="flex flex-wrap justify-center gap-6">
+
+                        <div class="flex items-center text-lg font-medium">✅ Fotos del Cultivo</div>
+
+                        <div class="flex items-center text-lg font-medium">✅ Mensaje del Agricultor</div>
+
+                        <div class="flex items-center text-lg font-medium">✅ Fecha de Cosecha y Tueste</div>
+
+                        <div class="flex items-center text-lg font-medium">✅ Precio Transparente Pagado</div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Footer / Contacto -->
+
+        <footer id="contacto" class="bg-coffee/90 py-12 text-white">
+
+            <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+
+                <!-- Columna 1: Información de Contacto -->
+
+                <div>
+
+                    <h5 class="text-xl font-bold mb-4">Contáctanos</h5>
+
+                    <p class="mb-1">Correo: hola@origenpuro.nl</p>
+
+                    <p class="mb-1">Teléfono: +31 20 123 4567</p>
+
+                    <p>Ubicación: Ámsterdam, Netherlands</p>
+
+                </div>
+
+
+
+                <!-- Columna 2: Enlaces Rápidos -->
+
+                <div>
+
+                    <h5 class="text-xl font-bold mb-4">Enlaces</h5>
+
+                    <ul class="space-y-1">
+
+                        <li><a href="#inicio" class="hover:underline">Inicio</a></li>
+
+                        <li><a href="#origenes" class="hover:underline">Conoce a los Productores</a></li>
+
+                        <li><a href="#tienda" class="hover:underline">Comprar Ahora</a></li>
+
+                        <li><a href="#">Política de Privacidad</a></li>
+
+                    </ul>
+
+                </div>
+
+
+
+                <!-- Columna 3: Redes Sociales -->
+
+                <div>
+
+                    <h5 class="text-xl font-bold mb-4">Síguenos</h5>
+
+                    <div class="flex justify-center md:justify-start space-x-4 text-2xl">
+
+                        <a href="#" aria-label="Instagram" class="hover:opacity-80 transition">📸</a>
+
+                        <a href="#" aria-label="Facebook" class="hover:opacity-80 transition">👍</a>
+
+                        <a href="#" aria-label="LinkedIn" class="hover:opacity-80 transition">🔗</a>
+
+                    </div>
+
+                    <p class="mt-4 text-sm opacity-70">&copy; 2025 Origen Puro. Todos los derechos reservados.</p>
+
+                </div>
+
+            </div>
+
+        </footer>
+
+
+
+        <!-- Modal para mostrar Historias de Productores (Simulación) -->
+
+        <div id="historia-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
+
+            <div class="bg-white rounded-xl p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+
+                <div class="flex justify-between items-start mb-4">
+
+                    <h4 id="modal-title" class="text-2xl font-bold text-coffee"></h4>
+
+                    <button onclick="cerrarModal()" class="text-gray-500 hover:text-gray-800 transition">
+
+                        <!-- Icono de cerrar SVG -->
+
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+
+                    </button>
+
+                </div>
+
+                <img id="modal-image" class="w-full h-48 object-cover rounded-lg mb-4" alt="Imagen del productor">
+
+                <p id="modal-content" class="text-gray-700 leading-relaxed"></p>
+
+                <div class="mt-6 p-4 bg-accent/30 rounded-lg">
+
+                    <p class="font-semibold text-coffee">¡Este es el tipo de información que verías al escanear el QR!</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Contenedor para mensajes (simulación de carrito) -->
+
+        <div id="message-container" class="fixed bottom-4 right-4 z-50 space-y-2">
+
+            <!-- Los mensajes de notificación se insertarán aquí -->
+
+        </div>
+
+
+
+    </div>
+
+
+
+    <script>
+
+        // --- Lógica JavaScript para la Interacción y Simulación ---
+
+
+
+        // 1. Lógica del Menú Móvil
+
+        const menuToggle = document.getElementById('menu-toggle');
+
+        const mobileMenu = document.getElementById('mobile-menu');
+
+
+
+        menuToggle.addEventListener('click', () => {
+
+            mobileMenu.classList.toggle('hidden');
+
+        });
+
+
+
+        // Cierra el menú móvil al hacer click en un enlace
+
+        document.querySelectorAll('#mobile-menu a').forEach(item => {
+
+            item.addEventListener('click', () => {
+
+                mobileMenu.classList.add('hidden');
+
+            });
+
+        });
+
+
+
+        // 2. Simulación de Mensajes de Notificación (e.g., Carrito de compras)
+
+        function mostrarMensaje(text, duration = 3000) {
+
+            const container = document.getElementById('message-container');
+
+            
+
+            // Crear el elemento de mensaje
+
+            const message = document.createElement('div');
+
+            message.textContent = text;
+
+            message.className = 'bg-coffee text-white px-4 py-3 rounded-lg shadow-lg text-sm transition-all duration-300 transform translate-x-full opacity-0';
+
+
+
+            container.appendChild(message);
+
+
+
+            // Animar entrada
+
+            setTimeout(() => {
+
+                message.classList.remove('translate-x-full', 'opacity-0');
+
+                message.classList.add('translate-x-0', 'opacity-100');
+
+            }, 10);
+
+
+
+            // Animar salida y eliminar
+
+            setTimeout(() => {
+
+                message.classList.remove('translate-x-0', 'opacity-100');
+
+                message.classList.add('translate-x-full', 'opacity-0');
+
+                
+
+                // Eliminar del DOM después de la animación de salida
+
+                setTimeout(() => {
+
+                    message.remove();
+
+                }, 300); 
+
+            }, duration);
+
+        }
+
+
+
+        // Simulación de "Añadir al Carro"
+
+        function agregarAlCarro(producto) {
+
+            mostrarMensaje(`✔️ ${producto} añadido al carrito.`);
+
+        }
+
+
+
+
+
+        // 3. Lógica del Modal para Historias de Productores
+
+        const modal = document.getElementById('historia-modal');
+
+        const modalTitle = document.getElementById('modal-title');
+
+        const modalContent = document.getElementById('modal-content');
+
+        const modalImage = document.getElementById('modal-image');
+
+
+
+        // Datos simulados del productor
+
+        const productores = {
+
+            'vargas': {
+
+                titulo: 'Historia de la Familia Vargas',
+
+                imagen: 'https://placehold.co/600x400/6f4e37/ffffff?text=Productores+Vargas',
+
+                historia: 'La Finca El Paraíso, de la familia Vargas, se encuentra en las laderas de Huila, Colombia. Llevan más de tres generaciones dedicadas al cultivo del café. Utilizan un proceso de lavado meticuloso y secado al sol en camas africanas para realzar las notas dulces y la acidez vibrante de su café Caturra. Al comprar este café, estás apoyando directamente su proyecto de reforestación en la zona de amortiguamiento.',
+
+            },
+
+            'kivu': {
+
+                titulo: 'Cooperativa de Mujeres Kivu',
+
+                imagen: 'https://placehold.co/600x400/4a2c2a/ffffff?text=Productores+Kivu',
+
+                historia: 'Ubicada a orillas del Lago Kivu en la República Democrática del Congo, esta cooperativa está conformada exclusivamente por mujeres. Su misión va más allá del café; buscan la independencia económica y la reconstrucción social post-conflicto. Sus granos Bourbon, cultivados en suelos volcánicos, son un testimonio de resiliencia, con un perfil de sabor único, terroso y afrutado.',
+
+            },
+
+            'llama': {
+
+                titulo: 'El Reto de la Altura: Finca Llama',
+
+                imagen: 'https://placehold.co/600x400/b7a69b/4a2c2a?text=Productores+Llama',
+
+                historia: 'La Finca Llama, en Cajamarca, Perú, es una de las más altas que importamos. A más de 2000 metros sobre el nivel del mar, el clima frío obliga a los granos Typica a madurar lentamente, concentrando sus azúcares y complejidad. El productor, Don Ricardo, ha sido reconocido localmente por su enfoque orgánico y su respeto por las tradiciones ancestrales de cultivo.',
+
+            }
+
+        };
+
+
+
+        function mostrarHistoria(productorKey) {
+
+            const data = productores[productorKey];
+
+            if (!data) return;
+
+
+
+            modalTitle.textContent = data.titulo;
+
+            modalContent.textContent = data.historia;
+
+            modalImage.src = data.imagen;
+
+            
+
+            modal.classList.remove('hidden');
+
+        }
+
+
+
+        function cerrarModal() {
+
+            modal.classList.add('hidden');
+
+        }
+
+
+
+        // Cierra el modal si se hace clic fuera de él
+
+        modal.addEventListener('click', (e) => {
+
+            if (e.target === modal) {
+
+                cerrarModal();
+
+            }
+
+        });
+
+        
+
+        // Simulación de Escaneo de QR (mensaje en consola para el desarrollador)
+
+        console.log("Simulación: El código QR en el paquete dirigiría a una URL única, como: /trace?sku=COL12345, donde se cargaría la historia del productor desde una base de datos (simulada por el modal).");
+
+        
+
+    </script>
+
+
+
+</body>
+
+</html>
+
