@@ -1,27 +1,44 @@
-import { prisma } from '@/lib/prisma'
 import { ProductCard } from '@/components/ProductCard'
 import Link from 'next/link'
 import { Coffee } from 'lucide-react'
-import { parseImages } from '@/lib/utils'
 
-export default async function ProductsPage() {
-  const products = await prisma.product.findMany({
-    where: { isActive: true },
-    include: {
-      producer: {
-        include: {
-          user: true,
-        },
+// Datos de ejemplo para GitHub Pages (versión estática)
+const mockProducts = [
+  {
+    id: '1',
+    name: 'Café Especial Finca La Esperanza',
+    description: 'Café de origen único con notas de chocolate y caramelo, cultivado a 1800 metros sobre el nivel del mar.',
+    price: 24.99,
+    origin: 'Huila, Colombia',
+    images: ['/placeholder-coffee.jpg'],
+    producer: {
+      farmName: 'Finca La Esperanza',
+      country: 'Colombia',
+      user: {
+        name: 'Carlos Rodríguez',
       },
     },
-    orderBy: { createdAt: 'desc' },
-  })
+  },
+  {
+    id: '2',
+    name: 'Café Premium Monte Verde',
+    description: 'Café procesado naturalmente con sabores afrutados y cuerpo completo.',
+    price: 28.50,
+    origin: 'Antioquia, Colombia',
+    images: ['/placeholder-coffee.jpg'],
+    producer: {
+      farmName: 'Monte Verde',
+      country: 'Colombia',
+      user: {
+        name: 'María González',
+      },
+    },
+  },
+]
 
-  // Convertir imágenes de JSON a arrays
-  const productsWithImages = products.map((product) => ({
-    ...product,
-    images: parseImages(product.images),
-  }))
+export default function ProductsPage() {
+  // En producción estática, usar datos mock
+  const products = mockProducts
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
@@ -49,7 +66,7 @@ export default async function ProductsPage() {
         </div>
       ) : (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {productsWithImages.map((product) => (
+          {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>

@@ -1,34 +1,83 @@
-import { prisma } from '@/lib/prisma'
-import { notFound } from 'next/navigation'
 import Image from 'next/image'
-import { formatPrice, parseImages } from '@/lib/utils'
+import { formatPrice } from '@/lib/utils'
 import { MapPin, Package, Coffee } from 'lucide-react'
 import { QRCodeDisplay } from '@/components/QRCodeDisplay'
 import { AddToCartButton } from '@/components/AddToCartButton'
 import Link from 'next/link'
+import { generateQRCode } from '@/lib/utils'
 
-export default async function ProductDetailPage({
+// Datos mock para GitHub Pages
+const mockProducts: Record<string, any> = {
+  '1': {
+    id: '1',
+    name: 'Café Especial Finca La Esperanza',
+    description: 'Café de origen único con notas de chocolate y caramelo, cultivado a 1800 metros sobre el nivel del mar. Este café especial es el resultado de años de experiencia y dedicación en el cultivo del mejor café colombiano.',
+    price: 24.99,
+    origin: 'Huila, Colombia',
+    variety: 'Caturra',
+    process: 'Lavado',
+    altitude: 1800,
+    stock: 50,
+    images: ['/placeholder-coffee.jpg'],
+    qrCode: generateQRCode(),
+    producer: {
+      farmName: 'Finca La Esperanza',
+      country: 'Colombia',
+      user: {
+        name: 'Carlos Rodríguez',
+      },
+      story: 'Somos una familia de productores de café con más de 30 años de experiencia. Nuestro café se cultiva con métodos tradicionales y respeto por el medio ambiente.',
+    },
+  },
+  '2': {
+    id: '2',
+    name: 'Café Premium Monte Verde',
+    description: 'Café procesado naturalmente con sabores afrutados y cuerpo completo. Ideal para los amantes del café con notas complejas.',
+    price: 28.50,
+    origin: 'Antioquia, Colombia',
+    variety: 'Typica',
+    process: 'Natural',
+    altitude: 1650,
+    stock: 30,
+    images: ['/placeholder-coffee.jpg'],
+    qrCode: generateQRCode(),
+    producer: {
+      farmName: 'Monte Verde',
+      country: 'Colombia',
+      user: {
+        name: 'María González',
+      },
+      story: 'En Monte Verde, combinamos técnicas modernas con tradición familiar para producir cafés excepcionales.',
+    },
+  },
+}
+
+// Necesario para export estático
+export function generateStaticParams() {
+  return Object.keys(mockProducts).map((id) => ({
+    id: id,
+  }))
+}
+
+export default function ProductDetailPage({
   params,
 }: {
   params: { id: string }
 }) {
-  const product = await prisma.product.findUnique({
-    where: { id: params.id, isActive: true },
-    include: {
-      producer: {
-        include: {
-          user: true,
-        },
-      },
-    },
-  })
+  const product = mockProducts[params.id]
 
   if (!product) {
-    notFound()
+    return (
+      <div className="max-w-7xl mx-auto px-4 py-12 text-center">
+        <h1 className="text-4xl font-bold text-coffee-900 mb-4">Producto no encontrado</h1>
+        <Link href="/products" className="text-coffee-700 hover:text-coffee-800">
+          Volver a productos
+        </Link>
+      </div>
+    )
   }
 
-  // Convertir imágenes de JSON a array
-  const productImages = parseImages(product.images)
+  const productImages = product.images || []
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
@@ -45,7 +94,7 @@ export default async function ProductDetailPage({
           </div>
           {productImages.length > 1 && (
             <div className="grid grid-cols-4 gap-2">
-              {productImages.slice(1, 5).map((img, idx) => (
+              {productImages.slice(1, 5).map((img: string, idx: number) => (
                 <div key={idx} className="relative h-20 w-full rounded overflow-hidden">
                   <Image
                     src={img}
