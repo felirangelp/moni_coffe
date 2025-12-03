@@ -1,11 +1,7 @@
 /** @type {import('next').NextConfig} */
-const isProd = process.env.NODE_ENV === 'production'
-const repoName = 'moni_coffe'
-
 const nextConfig = {
   output: 'export',
-  basePath: isProd ? `/${repoName}` : '',
-  assetPrefix: isProd ? `/${repoName}` : '',
+  // Sin basePath - GitHub Pages puede servir desde la raíz
   images: {
     unoptimized: true,
     domains: ['localhost'],
@@ -20,4 +16,3 @@ const nextConfig = {
 }
 
 module.exports = nextConfig
-
