@@ -1,0 +1,102 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("CUSTOMER") // CUSTOMER, PRODUCER, ADMIN
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Si es productor
+  producer Producer?
+
+  // Si es cliente
+  orders Order[]
+}
+
+model Producer {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  farmName    String
+  location    String
+  country     String
+  description String?
+  story       String?  // Historia del productor
+  images      String   @default("[]") // URLs de imágenes como JSON array
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  products Product[]
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  producerId  String
+  producer    Producer @relation(fields: [producerId], references: [id], onDelete: Cascade)
+  name        String
+  description String
+  origin      String   // Origen específico (finca, región)
+  variety     String?  // Variedad de café
+  process     String?  // Proceso (lavado, natural, honey, etc.)
+  altitude    Int?     // Altitud en metros
+  price       Float
+  stock       Int      @default(0)
+  images      String   @default("[]") // URLs de imágenes como JSON array
+  qrCode      String   @unique // Código único para QR
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  orderItems OrderItem[]
+  tracking   Tracking[]
+}
+
+model Order {
+  id         String      @id @default(cuid())
+  userId     String
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status     String   @default("PENDING") // PENDING, CONFIRMED, SHIPPED, DELIVERED, CANCELLED
+  total      Float
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+
+  items OrderItem[]
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  orderId  String
+  order    Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String
+  product  Product @relation(fields: [productId], references: [id])
+  quantity Int
+  price    Float
+  qrCode   String  // Código QR del producto comprado
+  createdAt DateTime @default(now())
+}
+
+model Tracking {
+  id          String   @id @default(cuid())
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  qrCode      String   @unique
+  stage       String   // "cultivo", "cosecha", "procesamiento", "empaque", "envío", "entrega"
+  location    String?
+  description String?
+  timestamp   DateTime @default(now())
+  images      String   @default("[]") // Imágenes del proceso como JSON array
+}
+
