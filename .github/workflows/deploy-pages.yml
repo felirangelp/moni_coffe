@@ -43,6 +43,9 @@ jobs:
           echo "Verifying basePath in index.html..."
           grep -q '/moni_coffe/_next' out/index.html && echo "✓ basePath correcto" || echo "✗ basePath incorrecto"
           head -1 out/index.html | grep -o 'href="/moni_coffe/[^"]*"' | head -3
+          echo "Verifying static files..."
+          ls -la out/ | grep -E "\.html$" || echo "No HTML files found"
+          test -f out/origen-puro.html && echo "✓ origen-puro.html encontrado" || echo "✗ origen-puro.html NO encontrado"
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
