@@ -2,6 +2,10 @@
 
 Plataforma web para la trazabilidad de café de origen, conectando productores con clientes en Netherlands.
 
+## 🌐 Sitio en Vivo
+
+**GitHub Pages:** https://felirangelp.github.io/moni_coffe/
+
 ## Características
 
 - 🌱 **Panel de Productores**: Los productores pueden subir imágenes, historias y gestionar sus productos
@@ -14,12 +18,12 @@ Plataforma web para la trazabilidad de café de origen, conectando productores c
 
 - Next.js 14
 - TypeScript
-- Prisma (SQLite)
+- Prisma (SQLite para desarrollo)
 - Tailwind CSS
 - NextAuth
 - QR Code
 
-## Instalación
+## Instalación Local
 
 1. Instalar dependencias:
 ```bash
@@ -42,6 +46,23 @@ cp .env.example .env
 npm run dev
 ```
 
+## Despliegue
+
+Este proyecto está configurado para desplegarse automáticamente en GitHub Pages usando GitHub Actions.
+
+### Configuración de GitHub Pages
+
+1. Ve a **Settings** → **Pages** en tu repositorio
+2. En **Source**, selecciona: **GitHub Actions**
+3. El workflow se ejecutará automáticamente en cada push a `main`
+
+### URL del Sitio
+
+Una vez desplegado, el sitio estará disponible en:
+```
+https://felirangelp.github.io/moni_coffe/
+```
+
 ## Estructura del Proyecto
 
 - `/app` - Páginas y rutas de Next.js
@@ -50,3 +71,20 @@ npm run dev
 - `/prisma` - Esquema de base de datos
 - `/public` - Archivos estáticos
 
+## Notas Importantes
+
+⚠️ **GitHub Pages es solo para sitios estáticos:**
+- Las API routes no funcionan en GitHub Pages
+- La base de datos no funciona (usa datos mock/demo)
+- El registro y login son solo visuales
+
+Para funcionalidad completa, despliega en:
+- **Vercel** (recomendado para Next.js)
+- **Netlify**
+- **Railway**
+
+Ver `DEPLOY.md` para más opciones de despliegue.
+
+## Licencia
+
+MIT
