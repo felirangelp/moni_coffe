@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  // Sin basePath - GitHub Pages puede servir desde la raíz
+  // GitHub Pages sirve desde /moni_coffe/ para repositorios de proyecto
+  basePath: '/moni_coffe',
+  assetPrefix: '/moni_coffe',
   images: {
     unoptimized: true,
     domains: ['localhost'],
